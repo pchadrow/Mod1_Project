@@ -11,3 +11,9 @@ def add_columns(x, y):
         return x + y
     else:
         return 0
+    
+def splitNewCol(dfName, columnName):
+    newColumn = []
+    for val in dfName[columnName]:
+        newColumn.append(val.split(","))
+    return(newColumn)
