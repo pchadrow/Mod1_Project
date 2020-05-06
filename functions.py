@@ -17,3 +17,43 @@ def splitNewCol(dfName, columnName):
     for val in dfName[columnName]:
         newColumn.append(val.split(","))
     return(newColumn)
+
+def gross(keyword, df):
+    gross = 0
+    for i in df.index:
+        if any(keyword in g for g in df['genresList'][i]):
+            gross += (df['domestic_gross'][i])
+    return(gross)
+
+def count(keyword, df):
+    count = 0
+    for i in df.index:
+        if any(keyword in g for g in df['genresList'][i]):
+            count += 1
+    return(count)
+
+def meanGross(keyword, df):
+    genreGross = gross(keyword, df)
+    genreCount = count(keyword, df)
+    mean = genreGross/genreCount
+    return mean
+
+def budget(keyword, df):
+    budget = 0
+    for i in df.index:
+        if any(keyword in g for g in df['genresList'][i]):
+            budget += (df['production_budget'][i])
+    return(budget)
+
+def meanBudget(keyword, df):
+    genreBudget = budget(keyword, df)
+    genreCount = count(keyword, df)
+    mean = genreBudget/genreCount
+    return mean
+
+def returnRate(keyword, df):
+    gross = meanGross(keyword, df)
+    budget = meanBudget(keyword, df)
+    increase = gross - budget
+    returnRate = (increase/budget) * 100
+    return returnRate
