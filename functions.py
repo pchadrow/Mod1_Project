@@ -88,3 +88,12 @@ def getGenreInfo(keyword, df):
                         'Worldwide Gross' : worldwide_gross,
                         'Production Budget' : production_budget})
     return allInfo
+
+def toConcat(df):
+    concatList = []
+    for i in genreList:
+        thisDF = pd.DataFrame(getGenreInfo(i, df))
+        concatList.append(thisDF)
+    return concatList
+#-----------------------------------------------
+#GenreDF = pd.concat(toConcat())
