@@ -17,6 +17,12 @@ def splitNewCol(dfName, columnName):
     for val in dfName[columnName]:
         newColumn.append(val.split(","))
     return(newColumn)
+    
+def countNewCol(dfName, columnName):
+    newCount = []
+    for val in dfName[columnName]:
+        newCount.append(len(val))
+    return(newCount)
 
 def gross(keyword, df):
     gross = 0
@@ -33,8 +39,8 @@ def count(keyword, df):
     return(count)
 
 def meanGross(keyword, df):
-    genreGross = gross(keyword, df)
-    genreCount = count(keyword, df)
+    genreGross = gross(keyword)
+    genreCount = count(keyword)
     mean = genreGross/genreCount
     return mean
 
@@ -46,14 +52,39 @@ def budget(keyword, df):
     return(budget)
 
 def meanBudget(keyword, df):
-    genreBudget = budget(keyword, df)
-    genreCount = count(keyword, df)
+    genreBudget = budget(keyword)
+    genreCount = count(keyword)
     mean = genreBudget/genreCount
     return mean
 
 def returnRate(keyword, df):
-    gross = meanGross(keyword, df)
-    budget = meanBudget(keyword, df)
+    gross = meanGross(keyword)
+    budget = meanBudget(keyword)
     increase = gross - budget
     returnRate = (increase/budget) * 100
     return returnRate
+
+def getGenreInfo(keyword, df):    
+    allInfo = {}
+    title = []
+    genre = []
+    domestic_gross = []
+    foreign_gross = []
+    worldwide_gross = []
+    production_budget = []
+    for i in df.index:
+        
+        if any(keyword in g for g in df['genresList'][i]):
+            genre.append(keyword)
+            title.append(df['movie_name'][i])
+            domestic_gross.append(df['domestic_gross'][i])
+            foreign_gross.append(df['foreign_gross'][i])
+            worldwide_gross.append(df['worldwide_gross'][i])
+            production_budget.append(df['production_budget'][i])
+        allInfo.update({'Title' : title,
+                        'Genre' : genre,
+                        'Domestic Gross' : domestic_gross,
+                        'Foreign Gross' : foreign_gross,
+                        'Worldwide Gross' : worldwide_gross,
+                        'Production Budget' : production_budget})
+    return allInfo
