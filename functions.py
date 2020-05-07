@@ -1,4 +1,6 @@
 import locale
+import pandas as pd
+
 def int_to_dollar(x):
     return locale.currency(x, grouping=True)
     
@@ -72,6 +74,8 @@ def getGenreInfo(keyword, df):
     foreign_gross = []
     worldwide_gross = []
     production_budget = []
+    director_count = []
+    writer_count = []
     for i in df.index:
         
         if any(keyword in g for g in df['genresList'][i]):
@@ -81,13 +85,39 @@ def getGenreInfo(keyword, df):
             foreign_gross.append(df['foreign_gross'][i])
             worldwide_gross.append(df['worldwide_gross'][i])
             production_budget.append(df['production_budget'][i])
+            director_count.append(df['directorCount'][i])
+            writer_count.append(df['writerCount'][i])
         allInfo.update({'Title' : title,
                         'Genre' : genre,
-                        'Domestic Gross' : domestic_gross,
-                        'Foreign Gross' : foreign_gross,
-                        'Worldwide Gross' : worldwide_gross,
-                        'Production Budget' : production_budget})
+                        'Domestic_Gross' : domestic_gross,
+                        'Foreign_Gross' : foreign_gross,
+                        'Worldwide_Gross' : worldwide_gross,
+                        'Production_Budget' : production_budget,
+                        'Director_Count' : director_count,
+                        'Writer_Count' : writer_count})
     return allInfo
+
+genreList = ['Drama',
+ 'Comedy',
+ 'Documentary',
+ 'Musical',
+ 'Horror',
+ 'Action',
+ 'Thriller',
+ 'Sci-Fi',
+ 'Fantasy',
+ 'Western',
+ 'Animation',
+ 'Romance',
+ 'Family',
+ 'Biography',
+ 'Crime',
+ 'War',
+ 'Music',
+ 'Adventure',
+ 'Sport',
+ 'Mystery',
+ 'History']
 
 def toConcat(df):
     concatList = []
@@ -97,3 +127,4 @@ def toConcat(df):
     return concatList
 #-----------------------------------------------
 #GenreDF = pd.concat(toConcat())
+
