@@ -2,7 +2,9 @@
 ## Preliminary Case Study
 
 [Presentation](./Microsoft_Movie_Studio.pdf)
-[Presentation Video]()
+
+[Presentation Video](https://www.youtube.com/watch?v=U5_Ntf50KHw)
+
 [Relevant Blog](https://medium.com/@pchadrow/a-data-science-beginners-first-foray-into-film-analysis-80f4694b4ee2)
 
 
@@ -20,6 +22,7 @@ To investigate the popularity and performance of specific genres along with the 
 * tmdb.movies.csv.gz
 * tn.movie_budgets.csv.gz
 </details>
+
 ## Question 1 
 
 ### Which Genres Are the Most Popular?
